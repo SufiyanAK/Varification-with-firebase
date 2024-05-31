@@ -1,11 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <div id="container">
+        <div id="form">
+            <div id="signInForm">
+                <div class="box">
+                    <div class="error hidden">Field is empty</div>
+                    <div id="nameBox">
+                        <input autocomplete="off" type="text" name="" id="name" placeholder="Username">
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div class="error hidden">Field is empty</div>
+                    <div id="emailBox">
+                        <input autocomplete="off" type="email" name="" id="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="error hidden">Field is empty</div>
+                    <div id="passwordBox">
+                        <input autocomplete="off" type="password" name="" id="password" placeholder="Password">
+                    </div>
+
+                </div>
+                <div class="box">
+                    <div id="error" class="hidden">Incorrect Password</div>
+                    <div id="confirmPasswordBox">
+                        <input autocomplete="off" type="password" name="" id="confirmPassword"
+                            placeholder="Confirm Password">
+                    </div>
+                </div>
+                <button id="signUpBtn" disabled>Sign Up</button>
+            </div>
+            <!-- <div id="signUpForm"></div> -->
+        </div>
+    </div>
 </body>
+
 </html>
