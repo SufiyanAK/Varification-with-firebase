@@ -44,13 +44,17 @@ signUpBtn.addEventListener('click', () => {
 
 // EVENT LISTENERS FOR SIGN IN INPUT FIELDS
 signInInputs.forEach(input => {
-    input.addEventListener('input', checkInput(signInInputs, signInBtn))
+    input.addEventListener('input', () => checkInput(signInInputs, signInBtn))
 });
 
 // EVENT LISTENERS FOR SIGN UP INPUT FIELDS
 signUpInputs.forEach(input => {
-    input.addEventListener('input', checkInput(signUpInputs, signUpBtn))
+    input.addEventListener('input', () => checkInput(signUpInputs, signUpBtn))
 });
+
+// INITAIL CHECK TO DISABLE BUTTON IF FIELDS ARE EMPTY
+checkInput(signInInputs, signInBtn);
+checkInput(signUpInputs, signUpBtn);
 
 function checkInput(input, btn) {
     let allFilled = true;
