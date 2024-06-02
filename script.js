@@ -14,6 +14,9 @@ const signUpBtn = document.querySelector('#signUpBtn');
 // VARIABLE
 const data = []
 
+// REGEXES
+const emailRegex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
+
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         tabs.forEach(otherTab => {
@@ -37,9 +40,11 @@ tabs.forEach(tab => {
 // EVENTLISTNER TO PUSH DATA INTO ARRAY OF OBJECT
 signUpBtn.addEventListener('click', () => {
     const value = getData(name, email, password, confirmPassword)
+    console.log(emailRegex.test(value.email));
     if (value.password === value.confirmPassword) {
         data.push(value);
     }
+    checkInput(signUpInputs, signUpBtn);
 })
 
 // EVENT LISTENERS FOR SIGN IN INPUT FIELDS
