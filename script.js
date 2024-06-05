@@ -95,6 +95,14 @@ function getSignUpData(n, se, sp, cp) {
     }
 }
 
+// FUNCTION TO GET SIGN IN DATA FROM SIGN UP INPUTS
+function getSignInData(se, sp) {
+    return {
+        signInEmail: se.value,
+        signInPassword: sp.value
+    }
+}
+
 // FUNCTION TO CHECK EMPTY SIGN UP INPUTS
 function checkInput(input, btn) {
     let allFilled = true;
