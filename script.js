@@ -8,6 +8,7 @@ const signUpBtn = document.querySelector('#signUpBtn');
 
 // VARIABLES
 const data = []
+const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 signUpInputs.forEach(input => {
     input.addEventListener('input', () => checkInput(signUpInputs, signUpBtn))
@@ -16,7 +17,12 @@ signUpInputs.forEach(input => {
 signUpBtn.addEventListener('click', () => {
     const getValues = getData(name, signUpEmail, signUpPassword, confirmPassword);
 
-    data.push(getValues);
+    const valid = checkValidation(getValues);
+    console.log(valid);
+
+    if (valid) {
+        data.push(getValues);
+    }
 
 })
 
@@ -53,4 +59,20 @@ function checkInput(input, btn) {
         btn.classList.remove('not-filled')
     }
     console.log(btn.disabled);
+}
+
+// FUNCTION TO CHECK EMAIL VALIDATION AND PASSWORD CONFIRMATION
+function checkValidation(data) {
+
+    const { email, password, confirmPassword } = data;
+    console.log(email);
+    console.log(password);
+    console.log(confirmPassword);
+    console.log(emailRegEx.test(email));
+
+    if (!emailRegEx.test(email) || password !== confirmPassword) {
+        return false;
+    }
+
+    return true;
 }
