@@ -67,6 +67,24 @@ signInFormBtn.addEventListener('click', () => {
     signInForm.classList.add('flex')
 })
 
+signInBtn.addEventListener('click', () => {
+    const signInValues = getSignInData(signInEmail, signInPassword);
+    const signUpValues = signUpData
+
+    const valid = signInValidation(signUpValues, signInValues);
+
+    if (valid) {
+        signInData.push(signInValues);
+        console.log(signInData);
+
+        signInEmail.value = ''
+        signInPassword.value = ''
+
+        checkInput(signInInputs, signInBtn)
+    }
+
+})
+
 // FUNCTION TO GET SIGN UP DATA FROM SIGN UP INPUTS
 function getSignUpData(n, se, sp, cp) {
     return {
@@ -106,3 +124,26 @@ function signUpValidation(data) {
 
     return true;
 }
+
+// FUNCTION TO CHECK EMAIL VALIDATION AND PASSWORD CONFIRMATION
+function signInValidation(signUpData, signInData) {
+    const { signInEmail, signInPassword } = signInData;
+
+    let isCorrect = false;
+
+    signUpData.forEach(data => {
+        const { signUpEmail, signUpPassword } = data;
+
+        if (signInEmail === signUpEmail && signInPassword === signUpPassword) {
+            isCorrect = true;
+            return isCorrect;
+        }
+
+    })
+
+    return isCorrect;
+}
+
+// CHECK INITIALLY FOR EMPTY INPUTS
+checkInput(signInInputs, signInBtn)
+checkInput(signUpInputs, signUpBtn)
