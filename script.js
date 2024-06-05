@@ -1,10 +1,21 @@
 // SELECTORS
+// SIGN UP SELECTORS
 const signUpInputs = document.querySelectorAll('.signUp-inputs');
 const name = document.querySelector('#name');
 const signUpEmail = document.querySelector('#signUpEmail');
 const signUpPassword = document.querySelector('#signUpPassword');
 const confirmPassword = document.querySelector('#confirmPassword');
 const signUpBtn = document.querySelector('#signUpBtn');
+const signUpForm = document.querySelector('#signUpForm');
+const signUpFormBtn = document.querySelector('#signUpFormBtn');
+
+// SIGN IN SELECTORS
+const signInInputs = document.querySelectorAll('.signIn-inputs');
+const signInEmail = document.querySelector('#signInEmail');
+const signInPassword = document.querySelector('#signInPassword');
+const signInBtn = document.querySelector('#signInBtn');
+const signInForm = document.querySelector('#signInForm');
+const signInFormBtn = document.querySelector('#signInFormBtn');
 
 // VARIABLES
 const data = []
