@@ -18,37 +18,61 @@ const signInForm = document.querySelector('#signInForm');
 const signInFormBtn = document.querySelector('#signInFormBtn');
 
 // VARIABLES
-const data = []
-const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+const signInData = []
+const signUpData = []
+const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
+let isSignIn = true;
 
 // SIGNUP INPUTS EVENTLISTNER TO CHECK FOR EMPTY INPUT
 signUpInputs.forEach(input => {
     input.addEventListener('input', () => checkInput(signUpInputs, signUpBtn))
 })
 
-// SIGNUP BTN EVENTLISTNER
-signUpBtn.addEventListener('click', () => {
-    const getValues = getData(name, signUpEmail, signUpPassword, confirmPassword);
+signUpFormBtn.addEventListener('click', () => {
+    signInForm.classList.add('hidden')
+    signInForm.classList.remove('flex')
+    signUpForm.classList.add('flex')
+    signUpForm.classList.remove('hidden')
+})
 
-    const valid = checkValidation(getValues);
+signUpBtn.addEventListener('click', () => {
+    const getValues = getSignUpData(name, signUpEmail, signUpPassword, confirmPassword);
+
+    const valid = signUpValidation(getValues);
 
     if (valid) {
-        data.push(getValues);
+        signUpData.push(getValues);
 
-        name.value = '';
-        signUpEmail.value = '';
-        signUpPassword.value = '';
-        confirmPassword.value = '';
+        console.log(signUpData);
+
+        name.value = ''
+        signUpEmail.value = ''
+        signUpPassword.value = ''
+        confirmPassword.value = ''
+
+        checkInput(signUpInputs, signUpBtn)
     }
 
 })
 
-// FUNCTION TO GET DATA FROM SIGN UP INPUTS
-function getData(n, se, sp, cp) {
+// SIGN IN EMPTY INPUT CHECK
+signInInputs.forEach(input => {
+    input.addEventListener('input', () => checkInput(signInInputs, signInBtn))
+})
+
+signInFormBtn.addEventListener('click', () => {
+    signUpForm.classList.remove('flex')
+    signUpForm.classList.add('hidden')
+    signInForm.classList.remove('hidden')
+    signInForm.classList.add('flex')
+})
+
+// FUNCTION TO GET SIGN UP DATA FROM SIGN UP INPUTS
+function getSignUpData(n, se, sp, cp) {
     return {
         name: n.value,
-        email: se.value,
-        password: sp.value,
+        signUpEmail: se.value,
+        signUpPassword: sp.value,
         confirmPassword: cp.value
     }
 }
@@ -72,11 +96,11 @@ function checkInput(input, btn) {
 }
 
 // FUNCTION TO CHECK EMAIL VALIDATION AND PASSWORD CONFIRMATION
-function checkValidation(data) {
+function signUpValidation(data) {
 
-    const { email, password, confirmPassword } = data;
+    const { signUpEmail, signUpPassword, confirmPassword } = data;
 
-    if (!emailRegEx.test(email) || password !== confirmPassword) {
+    if (!emailRegEx.test(signUpEmail) || signUpPassword !== confirmPassword) {
         return false;
     }
 
