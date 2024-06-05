@@ -1,0 +1,18 @@
+{
+  "name": "signup-authentication",
+  "version": "1.0.0",
+  "description": "This project is a basic authentication system with sign-in and sign-up forms. You can switch between the forms using tabs. The buttons are only enabled when all the input fields are filled correctly. In the future, we plan to add Firebase Authentication to this project.",
+  "main": "script.js",
+  "dependencies": {
+    "firebase": "^10.12.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tailwindcss -i ./css/input.css -o ./css/output.css --watch"
+  },
+  "author": "Sufiyan Ahmed Khan",
+  "license": "ISC"
+}
