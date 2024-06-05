@@ -6,6 +6,13 @@ const signUpPassword = document.querySelector('#signUpPassword');
 const confirmPassword = document.querySelector('#confirmPassword');
 const signUpBtn = document.querySelector('#signUpBtn');
 
+// VARIABLES
+const data = []
+
+signUpInputs.forEach(input => {
+    input.addEventListener('input', () => checkInput(signUpInputs, signUpBtn))
+})
+
 signUpBtn.addEventListener('click', () => {
     const getValues = getData(name, signUpEmail, signUpPassword, confirmPassword);
 
@@ -30,4 +37,20 @@ function getData(n, se, sp, cp) {
     cp.value = ''
 
     return value
+}
+
+// FUNCTION TO CHECK EMPTY SIGN UP INPUTS
+function checkInput(input, btn) {
+    let allFilled = true;
+    input.forEach(input => {
+        if (!input.value.trim()) {
+            allFilled = false;
+            btn.classList.add('not-filled');
+        }
+    });
+    btn.disabled = !allFilled;
+    if (!btn.disabled) {
+        btn.classList.remove('not-filled')
+    }
+    console.log(btn.disabled);
 }
