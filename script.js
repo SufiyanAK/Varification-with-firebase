@@ -91,6 +91,8 @@ signInBtn.addEventListener('click', () => {
         signInPassword.value = ''
 
         checkInput(signInInputs, signInBtn)
+
+        signInUser(signInValues.signInEmail, signInValues.signInPassword)
     }
 
 })
@@ -177,6 +179,23 @@ function createUser(email, password) {
             const errorMessage = error.message;
             console.log(errorMessage);
             // ..
+        });
+}
+
+// FUNCTION TO SIGN IN USER WITH FIREBASE AUTHENTICATION
+function signInUser(email, password) {
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user);
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            console.log(errorCode);
+            const errorMessage = error.message;
+            console.log(errorMessage);
         });
 }
 
