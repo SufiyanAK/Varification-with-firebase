@@ -1,3 +1,10 @@
+// IMPORT FIREBASE
+import { app } from "./firebase.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+// FIREBASE VARIABLES
+const auth = getAuth();
+
 // SELECTORS
 // SIGN UP SELECTORS
 const signUpInputs = document.querySelectorAll('.signUp-inputs');
@@ -51,7 +58,10 @@ signUpBtn.addEventListener('click', () => {
         confirmPassword.value = ''
 
         checkInput(signUpInputs, signUpBtn)
+
+        createUser(getValues.signUpEmail, getValues.signUpPassword)
     }
+
 
 })
 
@@ -150,6 +160,24 @@ function signInValidation(signUpData, signInData) {
     })
 
     return isCorrect;
+}
+
+// FUNCTION TO CREATE USER WITH FIREBASE AUTHENTICATION
+function createUser(email, password) {
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed up 
+            const user = userCredential.user;
+            console.log(user);
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            console.log(errorCode);
+            const errorMessage = error.message;
+            console.log(errorMessage);
+            // ..
+        });
 }
 
 // CHECK INITIALLY FOR EMPTY INPUTS
