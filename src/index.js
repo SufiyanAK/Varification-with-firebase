@@ -3,7 +3,7 @@ import { app } from "./firebase.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 // FIREBASE VARIABLES
-const auth = getAuth();
+const auth = getAuth(app);
 
 // SELECTORS
 // SIGN UP SELECTORS
@@ -49,6 +49,7 @@ signUpBtn.addEventListener('click', () => {
 
     if (valid) {
         signUpData.push(getValues);
+        saveToStorage('signUpData', signUpData);
 
         console.log(signUpData);
 
@@ -197,6 +198,11 @@ function signInUser(email, password) {
             const errorMessage = error.message;
             console.log(errorMessage);
         });
+}
+
+// SAVE TO STORAGE
+function saveToStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value))
 }
 
 // CHECK INITIALLY FOR EMPTY INPUTS
